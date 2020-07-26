@@ -1008,16 +1008,23 @@ export type BundleResult = {|
 /**
  * @section resolver
  */
-export type ResolveResult = {|
-  +filePath?: FilePath,
-  +isExcluded?: boolean,
-  /** Corresponds to BaseAsset's <code>sideEffects</code>. */
-  +sideEffects?: boolean,
-  /** A resolver might want to resolve to a dummy, in this case <code>filePath</code> is rather "resolve from". */
-  +code?: string,
-  /** A resolver might return diagnostics to also run subsequent resolvers while still providing a reason why it failed*/
-  +diagnostics?: Diagnostic | Array<Diagnostic>,
-|};
+export type ResolveResult =
+  | {|isExcluded: true|}
+  | {|
+      /** The result (an absolute path) */
+      +filePath: FilePath,
+      /** An unique string to be used instead of <code>path.relative(options.projectRoot, filePath)</code> when generating a hash, e.g. `${pkgName}@${version}/${subPath}` */
+      +cachePath?: string,
+
+      /** Corresponds to BaseAsset's <code>sideEffects</code>. */
+      +sideEffects?: boolean,
+      /** A resolver might want to resolve to a dummy, in this case <code>filePath</code> is rather "resolve from". */
+      +code?: string,
+    |}
+  | {|
+      /** A resolver might return diagnostics to also run subsequent resolvers while still providing a reason why it failed*/
+      +diagnostics?: Diagnostic | Array<Diagnostic>,
+    |};
 
 export type ConfigOutput = {|
   config: ConfigResult,
