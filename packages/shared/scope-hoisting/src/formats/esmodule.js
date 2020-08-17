@@ -400,7 +400,6 @@ export function generateExports(
       t.variableDeclaration('var', declarations),
       t.exportNamedDeclaration(null, exportedIdentifiersBailoutSpecifiers),
     ]);
-    programPath.scope.crawl();
   }
 
   return exported;
