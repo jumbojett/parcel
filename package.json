@@ -1,6 +1,6 @@
 {
-  "name": "@parcel/monorepo",
-  "version": "v2.0.0-beta.1",
+  "name": "parcel-bundler",
+  "version": "2.0",
   "description": "Blazing fast, zero configuration web application bundler",
   "license": "MIT",
   "repository": {
